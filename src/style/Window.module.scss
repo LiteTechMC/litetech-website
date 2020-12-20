@@ -1,0 +1,90 @@
+// General Styling
+.centered-title {
+    text-align: center;
+}
+
+.thin-hr {
+    height: 1px;
+    padding: 0px;
+    margin: 20px;
+}
+
+.padded-container {
+    padding-top: 30px;
+}
+
+// ===== Window Styles =====
+
+
+
+
+// ===== Project Window Styles =====
+.youtube-card {
+    border-radius: 10px;
+    margin: 0 auto;
+    background: rgba(44, 44, 44, 0.76)!important;
+    color: whitesmoke!important;
+
+    .youtube-title {
+        text-align: center;
+    }
+
+    .media {
+        height: 100%;
+    }
+
+    .thin-hr {
+        width: 100%;
+        color: black!important;
+        padding: 0;
+        margin: 10px auto;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .youtube-content {
+        overflow: 'ellipsis';
+    }
+
+    .cardImage {
+        transition: all 1s;
+        .image {
+            > img {
+                border-radius: 0px;
+                width: 100%;
+                transition: all 0.5s ease-in;
+            }
+        }
+        .overlay {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px) scale(0.5);
+            transition: all 0.5s ease-in;
+
+            img {
+                height: 50%;
+            }
+
+            p {
+                padding: 10px;
+            }
+        }
+        &:hover {
+            .image {
+                filter: brightness(25%) blur(3px);
+                transition: all 0.5s ease-in;
+            }
+            .overlay {
+                transform: scale(1) translateY(25px);
+                opacity: 1;
+            }
+        }
+    }
+}
