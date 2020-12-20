@@ -8,3 +8,5 @@ yarn-error.log
 .DS_Store
 js discord bot/youtubekey.json
 js discord bot/config.json
+src/js discord bot/config.json
+
