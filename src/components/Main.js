@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import pic01 from '../images/pic01.jpg'
 
-import memberData from '../../js discord bot/members.json'
-import key from '../../js discord bot/youtubekey.json'
+import memberData from '../js discord bot/members.json'
+import key from '../js discord bot/youtubekey.json'
 import {
     Grid, Typography
 } from '@material-ui/core';
