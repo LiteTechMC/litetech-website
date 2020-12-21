@@ -4,12 +4,53 @@ import pic01 from '../images/pic01.jpg'
 
 import memberData from '../js discord bot/members.json'
 import key from '../js discord bot/youtubekey.json'
-import {
-    Grid, Typography
-} from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 import YoutubeCard from './YoutubeCard.js'
+import Carousel from 'react-material-ui-carousel';
+
+const items = [
+    {
+        name: "Lear Music Reader",
+        description: "A PDF Reader specially designed for musicians.",
+        color: "#64ACC8"
+    },
+    {
+        name: "Hash Code 2019",
+        description: "My Solution on the 2019 Hash Code by Google Slideshow problem.",
+        color: "#7D85B1"
+    },
+    {
+        name: "Terrio",
+        description: "A exciting mobile game game made in the Unity Engine.",
+        color: "#CE7E78"
+    },
+    {
+        name: "React Carousel",
+        description: "A Generic carousel UI component for React using material ui.",
+        color: "#C9A27E"
+    }
+]
 
 const truncate = (input) => input.length > 250 ? `${input.substring(0, 250)}...` : input;
+
+function Project(props) {
+  return (
+    <Paper
+        className="Project"
+        style={{
+            backgroundColor: props.item.color,
+            position: "relative",
+            height: "300px",
+            overflow: "hidden",
+            padding: "20px",
+        }}
+        elevation={10}
+    >
+        <h2>{props.item.name}</h2>
+        <p>{props.item.description}</p>
+    </Paper>
+  )
+}
 
 class Main extends React.Component {
 
@@ -168,6 +209,34 @@ class Main extends React.Component {
           <p> Not yet implemented!</p>
         </article>
 
+        <article
+          id="image"
+          className={`${this.props.article === 'image' ? 'active' : ''} ${
+            this.props.articleTimeout ? 'timeout' : ''
+          }`}
+          style={{ display: 'none' }}
+        >
+
+          {close}
+
+          <h2 className="major">Images</h2>
+
+          <Carousel
+            style= {{width: "500px",}}
+            autoPlay="true"
+            timer="500"
+            animation="fade"
+            indicators="true"
+            timeout="500"
+          >
+              {
+                items.map((item, index) => {
+                  return <Project item={item} key={index} />
+                })
+              }
+
+          </Carousel>
+        </article>
       </div>
     )
   }
