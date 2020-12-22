@@ -4,7 +4,7 @@ import pic01 from '../images/pic01.jpg'
 
 import memberData from '../js discord bot/members.json'
 import key from '../js discord bot/youtubekey.json'
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core'
 import YoutubeCard from './YoutubeCard.js'
 import Carousel from 'react-material-ui-carousel';
 
@@ -221,21 +221,17 @@ class Main extends React.Component {
 
           <h2 className="major">Images</h2>
 
-          <Carousel
-            style= {{width: "500px",}}
-            autoPlay="true"
-            timer="500"
-            animation="fade"
-            indicators="true"
-            timeout="500"
-          >
-              {
-                items.map((item, index) => {
-                  return <Project item={item} key={index} />
-                })
-              }
-
+          <Carousel>
+            {
+              items.map((item, index) => {
+                return (
+                    <Project item={item} key={index} />
+                )
+              })
+            }
           </Carousel>
+                
+            
         </article>
       </div>
     )
@@ -265,7 +261,7 @@ function MemberList() {
 const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 async function getYoutubeVideos() {
-  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=PLUDyUa7vgsQlEST5MYSqTmc03U0Mr_Ihc&key=${key.key}`)
+  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=${key.realplaylist}&key=${key.key}`)
   const data = await res.json();
   console.log(data);
   return data;
