@@ -14,7 +14,7 @@ const YoutubeCard = ({ videoName, image, url, description }) => {
       <CardHeader 
         className={windowStyles.youtubeTitle}
         title={videoName}
-        titleTypographyProps={{variant:'p' }}
+        titleTypographyProps={{variant:'body1' }}
       />
       <CardActionArea className={windowStyles.media}>
         <a href={`https://www.youtube.com/watch?v=${url}`} target="_blank" rel="noreferrer">
@@ -40,7 +40,7 @@ const YoutubeCard = ({ videoName, image, url, description }) => {
         </a>
       </CardActionArea>
       <CardContent className={windowStyles.youtubeContent}>
-        <Typography paragraph variant="p">
+        <Typography paragraph variant="body1">
           {description}
         </Typography>
       </CardContent>

@@ -3,33 +3,19 @@ import React from 'react'
 import pic01 from '../images/pic01.jpg'
 
 import memberData from '../js discord bot/members.json'
-import key from '../js discord bot/youtubekey.json'
+import youtubekey from '../js discord bot/youtubekey.json'
 import { Grid, Paper } from '@material-ui/core'
 import YoutubeCard from './YoutubeCard.js'
 import Carousel from 'react-material-ui-carousel';
 
-const items = [
-    {
-        name: "Lear Music Reader",
-        description: "A PDF Reader specially designed for musicians.",
-        color: "#64ACC8"
-    },
-    {
-        name: "Hash Code 2019",
-        description: "My Solution on the 2019 Hash Code by Google Slideshow problem.",
-        color: "#7D85B1"
-    },
-    {
-        name: "Terrio",
-        description: "A exciting mobile game game made in the Unity Engine.",
-        color: "#CE7E78"
-    },
-    {
-        name: "React Carousel",
-        description: "A Generic carousel UI component for React using material ui.",
-        color: "#C9A27E"
-    }
-]
+function importImages(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  console.log(images);
+  return images;
+}
+
+const images = importImages(require.context('../images/carousel/', false, /\.(png|jpe?g|svg)$/));
 
 const truncate = (input) => input.length > 250 ? `${input.substring(0, 250)}...` : input;
 
@@ -38,16 +24,15 @@ function Project(props) {
     <Paper
         className="Project"
         style={{
-            backgroundColor: props.item.color,
             position: "relative",
             height: "300px",
             overflow: "hidden",
-            padding: "20px",
         }}
         elevation={10}
     >
-        <h2>{props.item.name}</h2>
-        <p>{props.item.description}</p>
+        <img src={props.item} style={{
+            width: "100%"
+        }} alt=""/>
     </Paper>
   )
 }
@@ -75,6 +60,13 @@ class Main extends React.Component {
 
 
   render() {
+    let items = [];
+
+    for (let key in images) {
+      console.log(key + " " + images[key])
+      items.push(<Project item={images[key]} key={key} />)
+    }
+
     let close = (
       <div
         role="button"
@@ -106,12 +98,13 @@ class Main extends React.Component {
             const { title, thumbnails = {}, resourceId = {}, description } = snippet;
             const { medium } = thumbnails;
             return (
-              <Grid item xs={12} lg={6}>
+              <Grid item xs={6} key={id}>
                 <YoutubeCard 
                     videoName={title}
                     image={ medium.url }
                     url={resourceId.videoId}
                     description={truncate(description)}
+
                 >
                 </YoutubeCard>
             </Grid>
@@ -222,13 +215,7 @@ class Main extends React.Component {
           <h2 className="major">Images</h2>
 
           <Carousel>
-            {
-              items.map((item, index) => {
-                return (
-                    <Project item={item} key={index} />
-                )
-              })
-            }
+            {items}
           </Carousel>
                 
             
@@ -261,7 +248,7 @@ function MemberList() {
 const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 async function getYoutubeVideos() {
-  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=${key.realplaylist}&key=${key.key}`)
+  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=${youtubekey.realplaylist}&key=${youtubekey.key}`)
   const data = await res.json();
   console.log(data);
   return data;
