@@ -13,7 +13,7 @@ const Header = props => (
       <div className="inner">
         <h1>LiteTech</h1>
         <p>
-          Welcome to LiteTech
+          Welcome to the LiteTech Minecraft Server
         </p>
       </div>
     </div>

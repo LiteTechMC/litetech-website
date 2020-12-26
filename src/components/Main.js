@@ -214,7 +214,7 @@ class Main extends React.Component {
 
           <h2 className="major">Images</h2>
 
-          <Carousel>
+          <Carousel interval="8000">
             {items}
           </Carousel>
                 
