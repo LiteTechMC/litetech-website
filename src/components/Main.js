@@ -4,7 +4,7 @@ import pic01 from '../images/pic01.jpg'
 
 import memberData from '../js discord bot/members.json'
 import youtubekey from '../js discord bot/youtubekey.json'
-import { Grid, Paper } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import YoutubeCard from './YoutubeCard.js'
 import Carousel from 'react-material-ui-carousel';
 
@@ -21,19 +21,15 @@ const truncate = (input) => input.length > 250 ? `${input.substring(0, 250)}...`
 
 function Project(props) {
   return (
-    <Paper
-        className="Project"
+    <div>
+      <img src={props.item} 
         style={{
-            position: "relative",
-            height: "300px",
-            overflow: "hidden",
-        }}
-        elevation={10}
-    >
-        <img src={props.item} style={{
-            width: "100%"
-        }} alt=""/>
-    </Paper>
+          width: "100%",
+          height: "100%",
+        }} 
+        alt=""
+      />
+    </div>
   )
 }
 
