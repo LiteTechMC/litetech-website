@@ -135,7 +135,7 @@ class Main extends React.Component {
           </p>
           <p>
             Our members are a collection of players throughout the world who enjoy creating anything from efficient 
-            arms to cool contraptions. In the end, we're just a bunch of idiots trying to have a good time.
+            farms to cool contraptions. In the end, we're just a bunch of idiots trying to have a good time.
           </p>
           
         </article>
