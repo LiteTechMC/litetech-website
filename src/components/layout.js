@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import ogImage from "../images/bg.jpg"
 import '../assets/scss/main.scss'
 
 const Layout = ({ children, location }) => {
@@ -38,25 +36,6 @@ const Layout = ({ children, location }) => {
       `}
       render={data => (
         <>
-          <Helmet
-            title={data.site.siteMetadata.title}
-            meta={[
-              {
-                property: `og:title`,
-                content: "LiteTech",
-              },
-              {
-                property: `og:type`,
-                content: `website`,
-              },
-              {
-                property: `og:image`,
-                content: `https://litetech.cf/${ogImage}`,
-              },
-            ]}
-          >
-            <html lang="en" />
-          </Helmet>
           {content}
         </>
       )}
