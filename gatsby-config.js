@@ -3,7 +3,7 @@ module.exports = {
     title: 'LiteTech',
     titleTemplate: "%s | Minecraft Server",
     author: 'Reese Gunardi',
-    description: 'A website for the LiteTech Minecraft Server. The website uses the Dimension Gatsby Starter template by HTML5 UP',
+    description: 'LiteTech is a technical 1.16 minecraft community.',
     url: "https://litetech.cf", // No trailing slash allowed!
     image: "/preview-image.jpg", // Path to your image you placed in the 'static' folder
   },

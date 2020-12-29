@@ -33,6 +33,47 @@ function Project(props) {
   )
 }
 
+const apiCreated = false;
+
+function MemberList() {
+  if (apiCreated)
+  {
+    /*
+    const membersList = async () => {
+      let memberData = await (await fetch("/api that I will write")).json()
+      return (
+        <ul>
+          {memberData.map((member) => {
+            <li key={member.id}>{member.username}</li>
+          })}
+        </ul>
+      )
+    }
+    */
+  }
+  else
+  {
+    const listItems = memberData.map((member) =>
+      <li key={member.username}>
+        {member.username}
+      </li>
+    );
+    return (
+      <ul>{listItems}</ul>
+    );
+  }
+}
+
+const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
+
+async function getYoutubeVideos() {
+  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=${youtubekey.realplaylist}&key=${youtubekey.key}`)
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
+
 class Main extends React.Component {
 
   state = {
@@ -228,26 +269,6 @@ Main.propTypes = {
   onCloseArticle: PropTypes.func,
   timeout: PropTypes.bool,
   setWrapperRef: PropTypes.func.isRequired,
-}
-
-function MemberList() {
-    const listItems = memberData.map((member) =>
-        <li key={member.username}>
-            {member.username}
-        </li>
-    );
-    return (
-        <ul>{listItems}</ul>
-    );
-}
-
-const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
-
-async function getYoutubeVideos() {
-  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=${youtubekey.realplaylist}&key=${youtubekey.key}`)
-  const data = await res.json();
-  console.log(data);
-  return data;
 }
 
 export default Main
