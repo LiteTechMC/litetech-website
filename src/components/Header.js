@@ -21,6 +21,7 @@ const Header = props => (
       <ul>
         <li>
           <button
+            className="transparent-button"
             onClick={() => {
               props.onOpenArticle('about')
             }}
@@ -30,6 +31,7 @@ const Header = props => (
         </li>
         <li>
           <button
+            className="transparent-button"
             onClick={() => {
               props.onOpenArticle('image')
             }}
@@ -39,6 +41,7 @@ const Header = props => (
         </li>
         <li>
           <button
+            className="transparent-button"
             onClick={() => {
               props.onOpenArticle('members')
             }}
@@ -48,6 +51,7 @@ const Header = props => (
         </li>
         <li>
           <button
+            className="transparent-button"
             onClick={() => {
               props.onOpenArticle('youtube')
             }}
@@ -57,6 +61,7 @@ const Header = props => (
         </li>
         <li>
           <button
+            className="transparent-button"
             onClick={() => {
               props.onOpenArticle('discord')
             }}
@@ -66,6 +71,7 @@ const Header = props => (
         </li>
         <li>
           <button
+            className="transparent-button"
             onClick={() => {
               props.onOpenArticle('login')
             }}
