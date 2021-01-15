@@ -11,9 +11,10 @@ import Carousel from 'react-material-ui-carousel';
 function importImages(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  console.log(images);
   return images;
 }
+
+const liteBotAPI = "http://cors-anywhere.herokuapp.com/panel.litetech.cf:8888/members?ids=754388002016460950";
 
 const images = importImages(require.context('../images/carousel/', false, /\.(png|jpe?g|svg)$/));
 
@@ -33,34 +34,25 @@ function Project(props) {
   )
 }
 
-const apiCreated = false;
+const apiCreated = true;
 
-function MemberList() {
+async function getMemberList() {
   if (apiCreated)
   {
-    /*
-    const membersList = async () => {
-      let memberData = await (await fetch("/api that I will write")).json()
-      return (
-        <ul>
-          {memberData.map((member) => {
-            <li key={member.id}>{member.username}</li>
-          })}
-        </ul>
-      )
-    }
-    */
+    let memberDataJson = await fetch(liteBotAPI, {
+      method: 'GET',
+      headers: {
+        Authorization: process.env.GATSBY_LITEBOT_API_AUTH,
+      },
+    });
+    let data = await memberDataJson.json();
+    console.log(data);
+    return data;
   }
   else
   {
-    const listItems = memberData.map((member) =>
-      <li key={member.username}>
-        {member.username}
-      </li>
-    );
-    return (
-      <ul>{listItems}</ul>
-    );
+    console.log(memberData);
+    return memberData;
   }
 }
 
@@ -69,7 +61,6 @@ const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playli
 async function getYoutubeVideos() {
   const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=12&playlistId=${youtubekey.realplaylist}&key=${youtubekey.key}`)
   const data = await res.json();
-  console.log(data);
   return data;
 }
 
@@ -78,6 +69,7 @@ class Main extends React.Component {
 
   state = {
     externalData: null,
+    membersList: null,
   };
 
   componentDidMount() {
@@ -87,6 +79,13 @@ class Main extends React.Component {
         this.setState({externalData});
       }
     );
+
+    this._asyncRequest2 = getMemberList().then(
+      membersList => {
+        this._asyncRequest2 = null;
+        this.setState({membersList});
+      }
+    )
   }
 
   componentWillUnmount() {
@@ -100,7 +99,6 @@ class Main extends React.Component {
     let items = [];
 
     for (let key in images) {
-      console.log(key + " " + images[key])
       items.push(<Project item={images[key]} key={key} />)
     }
 
@@ -124,6 +122,7 @@ class Main extends React.Component {
     )
 
     let youtubeVideo = null;
+
     if (this.state.externalData === null) {
       youtubeVideo = (
           <div>Loading</div>
@@ -149,6 +148,27 @@ class Main extends React.Component {
           })}
         </Grid>
 
+      )
+    }
+
+    let memberList = null;
+
+    if (this.state.membersList === null){
+      memberList = (
+        <div>Loading Member List.</div>
+      )
+    } else {
+      console.log(this.state)
+      memberList = (
+        <div>
+          {this.state.membersList.member_data.map(({ name, id }) =>{
+            return (
+              <li key={id}>
+                {name}
+              </li>
+            )
+          })}
+        </div>
       )
     }
 
@@ -190,7 +210,7 @@ class Main extends React.Component {
         >
           <h2 className="major">Members</h2>
           
-          <MemberList/>
+          {memberList}
 
           {close}
         </article>

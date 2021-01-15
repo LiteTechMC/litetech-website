@@ -9,4 +9,5 @@ yarn-error.log
 js discord bot/youtubekey.json
 js discord bot/config.json
 src/js discord bot/config.json
+.env.development
 

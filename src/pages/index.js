@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 
 import previewImage from '../images/bg.jpg'
+
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
