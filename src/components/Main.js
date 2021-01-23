@@ -14,7 +14,7 @@ function importImages(r) {
   return images;
 }
 
-const liteBotAPI = "https://cors-anywhere.herokuapp.com/panel.litetech.cf:8888/members?ids=754388002016460950";
+const liteBotAPI = "http://panel.litetech.cf:8888/members?ids=754388002016460950";
 
 const images = importImages(require.context('../images/carousel/', false, /\.(png|jpe?g|svg)$/));
 
