@@ -14,7 +14,7 @@ function importImages(r) {
   return images;
 }
 
-const liteBotAPI = "http://panel.litetech.cf:8888/members?ids=754388002016460950";
+const liteBotAPI = "https://bot.litetech.cf/members?ids=754388002016460950";
 
 const images = importImages(require.context('../images/carousel/', false, /\.(png|jpe?g|svg)$/));
 
@@ -90,6 +90,10 @@ class Main extends React.Component {
 
   componentWillUnmount() {
     if (this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+
+    if (this._asyncRequest2) {
       this._asyncRequest.cancel();
     }
   }
