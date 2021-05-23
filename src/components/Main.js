@@ -34,7 +34,7 @@ function Project(props) {
   )
 }
 
-const apiCreated = true;
+const apiCreated = false;
 
 async function getMemberList() {
   if (apiCreated)
